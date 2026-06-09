@@ -190,6 +190,13 @@ function DresSection({ defaultBgImage: dresBgImage = defaultBgImage }: DresSecti
   );
 }
 
+// Simple client-only wrapper to avoid SSR/CSR mismatches for highly dynamic UI
+function ClientOnly({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted ? <>{children}</> : null;
+}
+
 // ==================== DATUM SLEDEĆE UTAKMICE ====================
 const nextMatchDate = new Date("2026-03-06T11:00:00+02:00").getTime();
 
@@ -389,6 +396,18 @@ const Home = () => {
 
   const heroItems = [
     {
+  "title": "NAŠA VIZIJA",
+  "subtitle": "FK Gornje Sinkovce • Tradicija • Razvoj • Ambicija",
+  "image": "https://i.ibb.co/1BHF1Vm/702494770-1577170647747249-6276155135646095994-n-1.jpg",
+  "link": "/vesti/fkgs-vizija"
+},
+    {
+  "title": "FK Gornje Sinkovce završio sezonu na 6. mestu",
+  "subtitle": "Poraz od Navalina 2:7 | 7. jun 2026.",
+  "image": "https://i.ibb.co/6cbLY4X4/668235405-26672293589033583-6079540597957973203-n.jpg",
+  "link": "/vesti/fkgs-kraj-sezone-2026"
+},
+    {
   "title": "FKGS – Radnik Sišince",
   "subtitle": "Lokalni derbi | Nedelja, 3. maj 2026. u 11 sati",
   "image": "https://i.postimg.cc/rsbM2scr/BR3A9961.jpg",
@@ -400,18 +419,7 @@ const Home = () => {
   "image": "https://i.postimg.cc/28cj3vB9/BR3A9785(1).jpg",
   "link": "/vesti/utakmica-kutles-novi-termin"
 },
-    {
-    "title": "Sinkovce u nedelju gostuje kod Mladosti iz Kutleša",
-    "subtitle": "19. april 2026. u 11 sati",
-    "image": "https://i.postimg.cc/DwnVC3fQ/BR3A0035(1).jpg",
-    "link": "/vesti/sinkovce-gostuje-mladost-kutles"
-  },
-    {
-    "title": "Stefan Pavlović povređen: Karijera kapitena pod znakom pitanja",
-    "subtitle": "15. april 2026",
-    "image": "https://i.postimg.cc/mDkrzsfq/BR3A0176.jpg",
-    "link": "/vesti/gornje-sinkovce-povreda-pavlovic"
-  },
+    
      
   
     // {
@@ -424,6 +432,24 @@ const Home = () => {
 
 
   const blogPosts: Post[] = [
+ {
+  "id": 10,
+  "title": "NAŠA VIZIJA",
+  "author": "FK Gornje Sinkovce",
+  "date": "8. jun 2026",
+  "excerpt": "Vizija FK Gornje Sinkovce – razvoj mladih talenata, izgradnja modernog stadiona i ambicija za viši rang takmičenja.",
+  "imageUrl": "https://i.ibb.co/1BHF1Vm/702494770-1577170647747249-6276155135646095994-n-1.jpg",
+  "link": "/vesti/fkgs-vizija"
+},
+      {
+  "id": 9,
+  "title": "FK Gornje Sinkovce završio sezonu na 6. mestu",
+  "author": "FK Gornje Sinkovce",
+  "date": "7. jun 2026",
+  "excerpt": "Porazom od Navalina 2:7 završena je sezona 2025/26. Naš tim je sezonu završio na šestoj poziciji Gradske lige Leskovac.",
+  "imageUrl": "https://i.ibb.co/6cbLY4X4/668235405-26672293589033583-6079540597957973203-n.jpg",
+  "link": "/vesti/fkgs-kraj-sezone-2026"
+},
    {
   "id": 8,
   "title": "Lokalni derbi: FK Gornje Sinkovce – Radnik Sišince",
@@ -433,25 +459,7 @@ const Home = () => {
   "imageUrl": "https://i.postimg.cc/rsbM2scr/BR3A9961.jpg",
   "link": "/vesti/fkgs-radnik-sisince"
 },
-    {
-  "id": 7,
-  "title": "Utakmica u Kutlešu zakazana za 26. april",
-  "author": "FK Gornje Sinkovce",
-  "date": "April 15, 2026",
-  "excerpt": "Odložena utakmica protiv Mladosti iz Kutleša dobila je novi termin – 26. april 2026. u 11 sati. Pozivamo navijače da dođu u Kutleš!",
-  "imageUrl": "https://i.postimg.cc/28cj3vB9/BR3A9785(1).jpg",
-  "link": "/vesti/utakmica-kutles-novi-termin"
-},
-    {
-  "id": 6,
-  "title": "Sinkovce u nedelju gostuje kod Mladosti iz Kutleša",
-  "author": "FK Gornje Sinkovce",
-  "date": "April 15, 2026",
-  "excerpt": "U prvom kolu trećeg kruga FK Gornje Sinkovce gostuje kod trećeplasirane Mladosti iz Kutleša. Utakmica se igra 19. aprila 2026. u 11 sati. Pozivamo sve navijače da dođu u Kutleš!",
-  "imageUrl": "https://i.postimg.cc/DwnVC3fQ/BR3A0035(1).jpg",
-  "link": "/vesti/sinkovce-gostuje-mladost-kutles"
-},
-   
+ 
      
   
 
@@ -469,21 +477,24 @@ const Home = () => {
   const currentItem = heroItems[currentIndex];
 
   return (
-    <>
+    <div>
       {/* HERO - sa manjim crnim overlay-em */}
+<ClientOnly>
 <section className="relative h-[620px] lg:h-[780px] w-full overflow-hidden">
   <Link href={currentItem.link}>
+    {/* promenjeno sa 0.58 na 0.75 (manje tamno) */}
     <Image 
       src={currentItem.image} 
       alt={currentItem.title} 
       fill 
-      className="object-cover brightness-[0.75]"   // ← promenjeno sa 0.58 na 0.75 (manje tamno)
+      className="object-cover brightness-[0.75]"
       priority 
     />
     
     {/* Manji i mekši crni overlay */}
     <div className="absolute inset-0 bg-gradient-to-b 
-                    from-black/10 via-black/40 to-black/75" />   // ← smanjene opacity vrednosti
+            from-black/10 via-black/40 to-black/75" />
+    {/* smanjene opacity vrednosti */}
 
     <div className="absolute bottom-12 left-8 md:left-16 lg:left-24 text-white max-w-4xl z-10">
       <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tighter drop-shadow-md">
@@ -495,19 +506,33 @@ const Home = () => {
     </div>
   </Link>
 
-  {/* Indikatori (tačkice) */}
-  <div className="absolute bottom-8 left-8 md:left-16 lg:left-24 flex gap-3 z-20">
-    {heroItems.map((_, index) => (
-      <div
-        key={index}
-        onClick={() => setCurrentIndex(index)}
-        className={`h-[4px] bg-white/40 transition-all cursor-pointer ${index === currentIndex ? 'w-20 bg-white' : 'w-12'}`}
+{/* Indikatori (tačkice) - Moderni stil */}
+<div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+  {heroItems.map((_, index) => (
+    <button
+      key={index}
+      onClick={() => setCurrentIndex(index)}
+      className={`group relative h-3 w-3 transition-all duration-300 ease-out focus:outline-none`}
+    >
+      {/* Pozadina */}
+      <div className={`absolute inset-0 rounded-full transition-all duration-400 
+        ${index === currentIndex 
+          ? 'bg-white scale-125' 
+          : 'bg-white/40 group-hover:bg-white/70'
+        }`}
       />
-    ))}
-  </div>
-</section>
+      
+      {/* Aktivna tačka */}
+      <div className={`absolute inset-0 rounded-full bg-white transition-all duration-500
+        ${index === currentIndex ? 'scale-100' : 'scale-0'}`}
+      />
+    </button>
+  ))}
+</div>
 
-      {/* VESTI */}
+</section>
+</ClientOnly>
+  {/* VESTI */}
       <div className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-5xl font-bold text-black mb-12 text-center">VESTI</h2>
@@ -552,11 +577,12 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-5xl font-bold text-white mb-12 text-center tracking-wider">PRVI TIM</h2>
 
+          <ClientOnly>
           <PositionSection
-           
-            players={squad.players}           // Prikazuje sve igrače
+            players={squad.players}
             bgImage={defaultBgImage}
           />
+          </ClientOnly>
 
           <div className="flex justify-center mt-12">
             <Link
@@ -569,7 +595,7 @@ const Home = () => {
         </div>
       </div>
 
-     {/* ==================== REZULTATI SEKCIJA SA DINAMIČKIM TAJMEROM ==================== */}
+  {/* ==================== REZULTATI SEKCIJA SA DINAMIČKIM TAJMEROM ==================== */}
 <div className="bg-[#0a0a0a] py-12 sm:py-16 lg:py-20">
   <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
@@ -581,49 +607,51 @@ const Home = () => {
         </h3>
 
         <div className="space-y-6 sm:space-y-8 lg:space-y-10">
-          {/* Jedna utakmica */}
-       <div className="flex items-start gap-4">
-            <div className="w-14 sm:w-16 text-right border-r border-zinc-700 pr-3 sm:pr-4 shrink-0">
-             <div className="text-3xl sm:text-4xl font-bold text-white leading-none">11</div>
-              <div className="text-xs text-gray-400 uppercase mt-1">Apr</div>
-            </div>
 
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-gray-400 mb-2">GRADSKA LIGA LESKOVAC - 11:00</p>
-              <div className="flex justify-between items-center gap-4">
-                <div className="space-y-1 min-w-0">
-                  <p className="text-white text-base sm:text-lg font-semibold truncate">NAPREDAK</p>
-                  <p className="text-white text-base sm:text-lg font-semibold truncate">GORNJE SINKOVCE</p>
-                </div>
-                <div className="text-right text-lg sm:text-xl font-bold shrink-0">
-                  <p className="text-[#00A3FF]">0</p>
-                  <p className="text-[#00A3FF]">3</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Druga utakmica – isti blok */}
+          {/* Prva utakmica - 30. Maj */}
           <div className="flex items-start gap-4">
             <div className="w-14 sm:w-16 text-right border-r border-zinc-700 pr-3 sm:pr-4 shrink-0">
-              <div className="text-3xl sm:text-4xl font-bold text-white leading-none">26</div>
-              <div className="text-xs text-gray-400 uppercase mt-1">Apr</div>
+              <div className="text-3xl sm:text-4xl font-bold text-white leading-none">30</div>
+              <div className="text-xs text-gray-400 uppercase mt-1">Maj</div>
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <p className="text-xs text-gray-400 mb-2">GRADSKA LIGA LESKOVAC - 17:30</p>
+              <div className="flex justify-between items-center gap-4">
+                <div className="space-y-1 min-w-0">
+                  <p className="text-white text-base sm:text-lg font-semibold truncate">MLADOST (DL)</p>
+                  <p className="text-white text-base sm:text-lg font-semibold truncate">GORNJE SINKOVCE</p>
+                </div>
+                <div className="text-right text-lg sm:text-xl font-bold shrink-0">
+                  <p className="text-[#00A3FF]">6</p>
+                  <p className="text-[#00A3FF]">2</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Druga utakmica - 7. Jun */}
+          <div className="flex items-start gap-4">
+            <div className="w-14 sm:w-16 text-right border-r border-zinc-700 pr-3 sm:pr-4 shrink-0">
+              <div className="text-3xl sm:text-4xl font-bold text-white leading-none">7</div>
+              <div className="text-xs text-gray-400 uppercase mt-1">Jun</div>
             </div>
 
             <div className="flex-1 min-w-0">
               <p className="text-xs text-gray-400 mb-2">GRADSKA LIGA LESKOVAC - 11:00</p>
               <div className="flex justify-between items-center gap-4">
                 <div className="space-y-1 min-w-0">
-                  <p className="text-white text-base sm:text-lg font-semibold truncate">MLADOST KUTLEŠ</p>
                   <p className="text-white text-base sm:text-lg font-semibold truncate">GORNJE SINKOVCE</p>
+                  <p className="text-white text-base sm:text-lg font-semibold truncate">NAVALIN</p>
                 </div>
                 <div className="text-right text-lg sm:text-xl font-bold shrink-0">
-                  <p className="text-[#00A3FF]">9</p>
-                  <p className="text-[#00A3FF]">1</p>
+                  <p className="text-[#00A3FF]">2</p>
+                  <p className="text-[#00A3FF]">7</p>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -641,7 +669,7 @@ const Home = () => {
       </p>
       <p className="text-2xl sm:text-3xl font-bold text-white">GORNJE SINKOVCE</p>
       <p className="text-[#00A3FF] text-sm my-2 font-medium">X</p>
-      <p className="text-2xl sm:text-3xl font-bold text-white">RADNIK SIŠINCE</p>
+      <p className="text-2xl sm:text-3xl font-bold text-white"> NEPOZNATO</p>
     </div>
 
     {/* Tajmer + datum */}
@@ -649,8 +677,8 @@ const Home = () => {
   <CountdownTimer targetDate={nextMatchDate} />
   
   <div className="mt-6 sm:mt-8">
-    <div className="text-4xl sm:text-5xl font-bold text-white leading-none">6. maj 2026.</div>
-    <div className="text-sm sm:text-base text-gray-400 mt-2">Nedelja • 11:00 • Gradska liga Leskovac</div>
+    <div className="text-4xl sm:text-5xl font-bold text-white leading-none">X. X. 2026.</div>
+    {/* <div className="text-sm sm:text-base text-gray-400 mt-2">Nedelja • 11:00 • Gradska liga Leskovac</div> */}
   </div>
 </div>
   </div>
@@ -670,7 +698,9 @@ const Home = () => {
 
 
  {/* ==================== DRES 25/26 SEKCIJA ==================== */}
-     <DresSection defaultBgImage={defaultBgImage} />
+    <ClientOnly>
+    <DresSection defaultBgImage={defaultBgImage} />
+    </ClientOnly>
 
      {/* JUVE STYLE HERO DIV */}
 <div className="bg-white py-24 sm:py-32 lg:py-40 overflow-hidden">
@@ -721,9 +751,10 @@ const Home = () => {
     method="POST"
     className="flex border-b border-white"
   >
+    {/* Važno za Formspree */}
     <input
       type="email"
-      name="email"                    // ← Važno za Formspree
+      name="email"
       placeholder="Unesite vašu email adresu"
       className="flex-1 bg-transparent px-4 py-4 text-white placeholder-gray-500 focus:outline-none text-lg"
       required
@@ -744,7 +775,7 @@ const Home = () => {
 
   </div>
 </div>
-    </>
+  </div>
   );
 };
 

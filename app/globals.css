@@ -40,3 +40,17 @@ body {
   line-height: 0.72 !important;
   font-weight: 900 !important;
 }
+@keyframes progressFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-progress {
+  width: 100%;
+  animation: progressFill 7s linear forwards;
+  box-shadow: 0 0 10px #00A3FF;
+}

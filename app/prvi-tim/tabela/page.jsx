@@ -7,92 +7,92 @@ const tabelaData = [
   {
     poz: 1,
     simbol: '▲',
-    domacin: 'NAVALIN',
-    lokacija: 'Navalin',
-    odigrane: 14,
-    pobede: 11,
+    domacin: 'MLADOST (DL)',
+    lokacija: 'Donja Lokošnica',
+    odigrane: 21,
+    pobede: 17,
     nerešeno: 2,
-    porazi: 1,
-    golovi: '42:8',
-    diff: '+34',
-    poeni: 35
+    porazi: 2,
+    golovi: '52:10',
+    diff: '+42',
+    poeni: 53
   },
   {
     poz: 2,
     simbol: '▼',
-    domacin: 'MLADOST (DL)',
-    lokacija: 'Donja Lokošnica',
-    odigrane: 14,
-    pobede: 11,
+    domacin: 'NAVALIN',
+    lokacija: 'Navalin',
+    odigrane: 21,
+    pobede: 17,
     nerešeno: 2,
-    porazi: 1,
-    golovi: '34:5',
-    diff: '+29',
-    poeni: 35
+    porazi: 2,
+    golovi: '69:22',
+    diff: '+47',
+    poeni: 53
   },
   {
     poz: 3,
     simbol: '',
     domacin: 'MLADOST (K)',
     lokacija: 'Kutleš',
-    odigrane: 14,
-    pobede: 9,
+    odigrane: 21,
+    pobede: 14,
     nerešeno: 2,
-    porazi: 3,
-    golovi: '39:19',
-    diff: '+20',
-    poeni: 29
+    porazi: 5,
+    golovi: '60:26',
+    diff: '+34',
+    poeni: 44
   },
   {
     poz: 4,
     simbol: '',
     domacin: 'RADNIK 2013',
     lokacija: 'Šišince',
-    odigrane: 14,
-    pobede: 8,
+    odigrane: 21,
+    pobede: 12,
     nerešeno: 1,
-    porazi: 5,
-    golovi: '31:16',
-    diff: '+15',
-    poeni: 25
+    porazi: 8,
+    golovi: '54:32',
+    diff: '+22',
+    poeni: 37
   },
   {
     poz: 5,
     simbol: '',
     domacin: 'FSU MORAVAC 1947',
     lokacija: 'Mrštane',
-    odigrane: 14,
-    pobede: 6,
+    odigrane: 21,
+    pobede: 10,
     nerešeno: 0,
-    porazi: 8,
-    golovi: '15:36',
-    diff: '-21',
-    poeni: 18
+    porazi: 11,
+    golovi: '36:45',
+    diff: '-9',
+    poeni: 30
   },
   {
     poz: 6,
     simbol: '',
     domacin: 'GORNJE SINKOVCE',
     lokacija: 'Gornje Sinkovce',
-    odigrane: 14,
-    pobede: 5,
+    odigrane: 21,
+    pobede: 7,
     nerešeno: 1,
-    porazi: 8,
-    golovi: '22:32',
-    diff: '-10',
-    poeni: 16
+    porazi: 13,
+    golovi: '34:67',
+    diff: '-33',
+    poeni: 22
   },
   {
     poz: 7,
     simbol: '',
     domacin: 'NAPREDAK 1986 (-1)',
     lokacija: 'Bogojevce',
-    odigrane: 13,
+    odigrane: 19,
     pobede: 1,
     nerešeno: 0,
-    porazi: 12,
-    golovi: '8:36',
-    diff: '-28',
+    porazi: 18,
+    golovi: '8:54',
+    diff: '-46',
     poeni: 2
   },
   {
@@ -100,12 +100,12 @@ const tabelaData = [
     simbol: '',
     domacin: 'TODOROVCE',
     lokacija: 'Todorovce',
-    odigrane: 13,
+    odigrane: 19,
     pobede: 0,
     nerešeno: 0,
-    porazi: 13,
-    golovi: '0:39',
-    diff: '-39',
+    porazi: 19,
+    golovi: '0:57',
+    diff: '-57',
     poeni: 0
   },
 ];
@@ -132,9 +132,9 @@ const TabelaPage = () => {
         </div>
       </div>
 
-      {/* Tabela sa oštrim ivicama */}
+      {/* Tabela */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-        <div className="overflow-x-auto border border-zinc-700 bg-zinc-950 shadow-2xl">
+        <div className="overflow-x-auto border border-zinc-700 bg-zinc-950 shadow-2xl rounded-3xl">
           <table className="w-full min-w-[900px] text-sm md:text-base">
             <thead>
               <tr className="bg-zinc-900 border-b border-zinc-700 text-[#00A3FF] uppercase text-xs tracking-widest">
@@ -189,7 +189,7 @@ const TabelaPage = () => {
         </div>
 
         <p className="text-center text-zinc-500 text-xs mt-6">
-          Poslednje ažuriranje: 15. april 2026. • Gradska liga Leskovac
+          Poslednje ažuriranje: 8. jun 2026. • Gradska liga Leskovac
         </p>
       </div>
     </div>

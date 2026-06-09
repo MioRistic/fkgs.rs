@@ -9,6 +9,24 @@ import Link from 'next/link';
 const defaultBgImage = "https://i.ibb.co/5hY4jXzz/kir-ufod2u-Fjk-TI-unsplash.jpg";
 
 const allNews = [
+  {
+  "id": 10,
+  "title": "NAŠA VIZIJA",
+  "author": "FK Gornje Sinkovce",
+  "date": "8. jun 2026",
+  "excerpt": "Vizija FK Gornje Sinkovce – razvoj mladih talenata, izgradnja modernog stadiona i ambicija za viši rang takmičenja.",
+  "imageUrl": "https://i.ibb.co/1BHF1Vm/702494770-1577170647747249-6276155135646095994-n-1.jpg",
+  "link": "/vesti/fkgs-vizija"
+},
+{
+  "id": 9,
+  "title": "FK Gornje Sinkovce završio sezonu na 6. mestu",
+  "author": "FK Gornje Sinkovce",
+  "date": "7. jun 2026",
+  "excerpt": "Porazom od Navalina 2:7 završena je sezona 2025/26. Naš tim je sezonu završio na šestoj poziciji Gradske lige Leskovac.",
+  "imageUrl": "https://i.ibb.co/6cbLY4X4/668235405-26672293589033583-6079540597957973203-n.jpg",
+  "link": "/vesti/fkgs-kraj-sezone-2026"
+},
  {
   "id": 8,
   "title": "Lokalni derbi: FK Gornje Sinkovce – Radnik Sišince",
