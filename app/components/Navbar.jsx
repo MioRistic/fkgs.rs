@@ -40,10 +40,10 @@ const Navbar = () => {
         <div className="absolute left-1/2 top-15 -translate-x-1/2 -translate-y-1/2 z-10">
           <Link href="/" className="flex items-center">
             <Image
-              src="https://i.postimg.cc/y6Tpb6vT/Untitled.png"
+              src="https://i.ibb.co/WvbkYkHc/fkgs.png"
               alt="FK Gornje Sinkovce"
-              width={90}
-              height={20}
+              width={120}
+              height={50}
               className="hover:scale-105 transition-transform duration-300"
               priority
             />

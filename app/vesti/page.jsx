@@ -9,6 +9,15 @@ import Link from 'next/link';
 const defaultBgImage = "https://i.ibb.co/5hY4jXzz/kir-ufod2u-Fjk-TI-unsplash.jpg";
 
 const allNews = [
+{
+  "id": 11,
+  "title": "Donja Lomnica nije došla u Sinkovce. Mi pišemo 3:0, savez još uvek ne.",
+  "author": "FK Gornje Sinkovce",
+  "date": "29. septembar 2026",
+  "excerpt": "Protivnik nije pristupio utakmici u Gornjem Sinkovcu. FK Gornje Sinkovce belži službenu pobedu 3:0 po pravilima FSS. Savez utakmicu još nije zaveo zvanično.",
+  "imageUrl": "https://i.ibb.co/R4kQmXqS/93e0168c58392f89ce0a17cdf89f13f5.jpg",
+  "link": "/vesti/donja-lomnica-nije-dosla"
+},
   {
   "id": 10,
   "title": "NAŠA VIZIJA",

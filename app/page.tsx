@@ -198,7 +198,7 @@ function ClientOnly({ children }: { children: React.ReactNode }) {
 }
 
 // ==================== DATUM SLEDEĆE UTAKMICE ====================
-const nextMatchDate = new Date("2026-03-06T11:00:00+02:00").getTime();
+const nextMatchDate = new Date("2026-10-03T14:00:00+02:00").getTime();
 
 // ==================== TAJMER - SATI  MINUTI  SEKUNDE (TAČNO RAČUNANJE) ====================
 function CountdownTimer({ targetDate }: { targetDate: number }) {
@@ -393,45 +393,49 @@ function PositionSection({ title = "", players, bgImage, specialPlayerImage = nu
 // ==================== HOME KOMPONENTA ====================
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const AUTOPLAY_MS = 6000;
 
   const heroItems = [
-    {
-  "title": "NAŠA VIZIJA",
-  "subtitle": "FK Gornje Sinkovce • Tradicija • Razvoj • Ambicija",
-  "image": "https://i.ibb.co/1BHF1Vm/702494770-1577170647747249-6276155135646095994-n-1.jpg",
-  "link": "/vesti/fkgs-vizija"
+   {
+  id: 11,
+  title: "Donja Lomnica nije došla u Sinkovce. Mi pišemo 3:0, savez još uvek ne.",
+  date: "29. septembar 2026",
+  excerpt: "Protivnik nije pristupio utakmici. FK Gornje Sinkovce belži 3:0 po pravilima FSS. Savez još nije zaveo meč.",
+  image: "https://i.ibb.co/R4kQmXqS/93e0168c58392f89ce0a17cdf89f13f5.jpg",
+  link: "/vesti/donja-lomnica-nije-dosla",
 },
     {
-  "title": "FK Gornje Sinkovce završio sezonu na 6. mestu",
-  "subtitle": "Poraz od Navalina 2:7 | 7. jun 2026.",
-  "image": "https://i.ibb.co/6cbLY4X4/668235405-26672293589033583-6079540597957973203-n.jpg",
-  "link": "/vesti/fkgs-kraj-sezone-2026"
-},
+      id: 10,
+      title: "NAŠA VIZIJA",
+      date: "08. jun 2026",
+      excerpt: "Vizija FK Gornje Sinkovce – razvoj mladih talenata, izgradnja stadiona i viši rang.",
+      image: "https://i.ibb.co/1BHF1Vm/702494770-1577170647747249-6276155135646095994-n-1.jpg",
+      link: "/vesti/fkgs-vizija",
+    },
     {
-  "title": "FKGS – Radnik Sišince",
-  "subtitle": "Lokalni derbi | Nedelja, 3. maj 2026. u 11 sati",
-  "image": "https://i.postimg.cc/rsbM2scr/BR3A9961.jpg",
-  "link": "/vesti/fkgs-radnik-sisince"
-},
-     {
-  "title": "Utakmica u Kutlešu zakazana za 26. april",
-  "subtitle": "26. april 2026. u 11 sati",
-  "image": "https://i.postimg.cc/28cj3vB9/BR3A9785(1).jpg",
-  "link": "/vesti/utakmica-kutles-novi-termin"
-},
-    
-     
-  
-    // {
-    //   title: "USMNT Nike 2026 Kits Unveiled",
-    //   subtitle: "Stripes Home & Stars Away for World Cup",
-    //   image: "https://assets.goal.com/images/v3/blt532e5fdd75fc8dc0/crop/MM5DIMBZGM5DEMZQGI5G433XMU5DAORYHA======/USSF_MNT_Kit_Launch_Vogue_mntjerseyshoot_11-09-25-124.jpg?auto=webp&format=pjpg&width=1200&quality=80",
-    //   link: "/blog/usmnt-nike-2026-kits-unveiled"
-    // }
+      id: 9,
+      title: "SEZONA ZAVRŠENA NA 6. MESTU",
+      date: "07. jun 2026",
+      excerpt: "Porazom od Navalina 2:7 završena je sezona 2025/26.",
+      image: "https://i.ibb.co/6cbLY4X4/668235405-26672293589033583-6079540597957973203-n.jpg",
+      link: "/vesti/fkgs-kraj-sezone-2026",
+    },
+ 
   ];
 
 
   const blogPosts: Post[] = [
+    
+{
+  "id": 11,
+  "title": "Donja Lomnica nije došla u Sinkovce. Mi pišemo 3:0, savez još uvek ne.",
+  "author": "FK Gornje Sinkovce",
+  "date": "29. septembar 2026",
+  "excerpt": "Protivnik nije pristupio utakmici u Gornjem Sinkovcu. FK Gornje Sinkovce belži službenu pobedu 3:0 po pravilima FSS. Savez utakmicu još nije zaveo zvanično.",
+  "imageUrl": "https://i.ibb.co/R4kQmXqS/93e0168c58392f89ce0a17cdf89f13f5.jpg",
+  "link": "/vesti/donja-lomnica-nije-dosla"
+},
  {
   "id": 10,
   "title": "NAŠA VIZIJA",
@@ -441,24 +445,8 @@ const Home = () => {
   "imageUrl": "https://i.ibb.co/1BHF1Vm/702494770-1577170647747249-6276155135646095994-n-1.jpg",
   "link": "/vesti/fkgs-vizija"
 },
-      {
-  "id": 9,
-  "title": "FK Gornje Sinkovce završio sezonu na 6. mestu",
-  "author": "FK Gornje Sinkovce",
-  "date": "7. jun 2026",
-  "excerpt": "Porazom od Navalina 2:7 završena je sezona 2025/26. Naš tim je sezonu završio na šestoj poziciji Gradske lige Leskovac.",
-  "imageUrl": "https://i.ibb.co/6cbLY4X4/668235405-26672293589033583-6079540597957973203-n.jpg",
-  "link": "/vesti/fkgs-kraj-sezone-2026"
-},
-   {
-  "id": 8,
-  "title": "Lokalni derbi: FK Gornje Sinkovce – Radnik Sišince",
-  "author": "FK Gornje Sinkovce",
-  "date": "Maj 2, 2026",
-  "excerpt": "U nedelju 6. maja u 11 sati na našem terenu igra se pravi lokalni derbi protiv Radnika iz Sišinca. Borba za ponos sela!",
-  "imageUrl": "https://i.postimg.cc/rsbM2scr/BR3A9961.jpg",
-  "link": "/vesti/fkgs-radnik-sisince"
-},
+
+
  
      
   
@@ -468,70 +456,117 @@ const Home = () => {
    
 
   useEffect(() => {
+    if (isPaused) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroItems.length);
-    }, 7000);
+    }, AUTOPLAY_MS);
     return () => clearInterval(interval);
-  }, []);
+  }, [isPaused]);
 
-  const currentItem = heroItems[currentIndex];
+  const current = heroItems[currentIndex];
 
   return (
     <div>
-      {/* HERO - sa manjim crnim overlay-em */}
-<ClientOnly>
-<section className="relative h-[620px] lg:h-[780px] w-full overflow-hidden">
-  <Link href={currentItem.link}>
-    {/* promenjeno sa 0.58 na 0.75 (manje tamno) */}
-    <Image 
-      src={currentItem.image} 
-      alt={currentItem.title} 
-      fill 
-      className="object-cover brightness-[0.75]"
-      priority 
-    />
-    
-    {/* Manji i mekši crni overlay */}
-    <div className="absolute inset-0 bg-gradient-to-b 
-            from-black/10 via-black/40 to-black/75" />
-    {/* smanjene opacity vrednosti */}
+      <>
+        <style>{`
+          @keyframes heroProgress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+          @keyframes heroKenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.18); } }
+          @keyframes heroFadeUp { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: translateY(0); } }
+        `}</style>
 
-    <div className="absolute bottom-12 left-8 md:left-16 lg:left-24 text-white max-w-4xl z-10">
-      <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-none tracking-tighter drop-shadow-md">
-        {currentItem.title}
-      </h1>
-      <p className="mt-6 text-2xl md:text-3xl font-medium drop-shadow-md">
-        {currentItem.subtitle}
-      </p>
-    </div>
-  </Link>
+        <section
+          className="relative w-full h-[62vh] min-h-[820px] max-h-[620px] overflow-hidden bg-black"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          aria-roledescription="carousel"
+        >
+          {heroItems.map((slide, i) => (
+            <Link
+              href={slide.link}
+              key={slide.id}
+              className={
+                "absolute inset-0 transition-opacity duration-[1000ms] ease-out " +
+                (i === currentIndex ? "opacity-100" : "opacity-0 pointer-events-none")
+              }
+              aria-hidden={i !== currentIndex}
+            >
+              <div className="absolute inset-0 overflow-hidden">
+                <Image
+                  src={slide.image}
+                  alt={slide.title}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  style={{ animation: "heroKenBurns 14s ease-in-out infinite alternate" }}
+                  priority={i === 0}
+                />
+              </div>
+            </Link>
+          ))}
 
-{/* Indikatori (tačkice) - Moderni stil */}
-<div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-  {heroItems.map((_, index) => (
-    <button
-      key={index}
-      onClick={() => setCurrentIndex(index)}
-      className={`group relative h-3 w-3 transition-all duration-300 ease-out focus:outline-none`}
-    >
-      {/* Pozadina */}
-      <div className={`absolute inset-0 rounded-full transition-all duration-400 
-        ${index === currentIndex 
-          ? 'bg-white scale-125' 
-          : 'bg-white/40 group-hover:bg-white/70'
-        }`}
-      />
-      
-      {/* Aktivna tačka */}
-      <div className={`absolute inset-0 rounded-full bg-white transition-all duration-500
-        ${index === currentIndex ? 'scale-100' : 'scale-0'}`}
-      />
-    </button>
-  ))}
-</div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/10 pointer-events-none" />
 
-</section>
-</ClientOnly>
+          <div className="relative z-10 h-full flex items-end pointer-events-none">
+            <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 pb-10 sm:pb-14">
+              <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+                <Link
+                  href={current.link}
+                  key={currentIndex}
+                  className="max-w-3xl pointer-events-auto"
+                  style={{ animation: "heroFadeUp 0.8s ease-out both" }}
+                >
+                  <span className="inline-block px-4 py-1.5 rounded-sm text-white text-xs sm:text-sm font-bold uppercase tracking-[0.2em] bg-[#00A3FF]">
+                    {current.date}
+                  </span>
+                  <h1 className="mt-5 text-white font-black uppercase leading-[1.02] text-3xl sm:text-5xl lg:text-6xl tracking-tight drop-shadow-lg">
+                    {current.title}
+                  </h1>
+                  <p className="mt-4 text-white/85 text-base sm:text-lg max-w-2xl">{current.excerpt}</p>
+                </Link>
+
+                <div className="flex gap-3 sm:gap-4 pointer-events-auto">
+                  {heroItems.map((slide, i) => (
+                    <div key={slide.id} className="flex flex-col">
+                      <button
+                        type="button"
+                        onClick={() => setCurrentIndex(i)}
+                        className={
+                          "relative w-28 sm:w-36 lg:w-44 aspect-[3/4] overflow-hidden rounded-md transition-all duration-300 shrink-0 " +
+                          (i === currentIndex
+                            ? "ring-2 ring-white ring-offset-2 ring-offset-black"
+                            : "ring-0 opacity-70 hover:opacity-100")
+                        }
+                        aria-label={`Slide ${i + 1}`}
+                      >
+                        <Image
+                          src={slide.image}
+                          alt={slide.title}
+                          fill
+                          sizes="176px"
+                          className="object-cover"
+                        />
+                      </button>
+                      <div className="mt-2 h-1.5 w-full bg-white/25 rounded-full overflow-hidden">
+                        {i === currentIndex && (
+                          <div
+                            key={`${currentIndex}-${isPaused}`}
+                            className="h-full bg-[#00A3FF] origin-left rounded-full"
+                            style={{
+                              animation: isPaused
+                                ? "none"
+                                : `heroProgress ${AUTOPLAY_MS}ms linear forwards`,
+                            }}
+                          />
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
   {/* VESTI */}
       <div className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6">
@@ -609,22 +644,23 @@ const Home = () => {
         <div className="space-y-6 sm:space-y-8 lg:space-y-10">
 
           {/* Prva utakmica - 30. Maj */}
+          
           <div className="flex items-start gap-4">
             <div className="w-14 sm:w-16 text-right border-r border-zinc-700 pr-3 sm:pr-4 shrink-0">
-              <div className="text-3xl sm:text-4xl font-bold text-white leading-none">30</div>
-              <div className="text-xs text-gray-400 uppercase mt-1">Maj</div>
+              <div className="text-3xl sm:text-4xl font-bold text-white leading-none">20</div>
+              <div className="text-xs text-gray-400 uppercase mt-1">Sep</div>
             </div>
 
             <div className="flex-1 min-w-0">
-              <p className="text-xs text-gray-400 mb-2">GRADSKA LIGA LESKOVAC - 17:30</p>
+              <p className="text-xs text-gray-400 mb-2">GRADSKA LIGA LESKOVAC - 11:00</p>
               <div className="flex justify-between items-center gap-4">
                 <div className="space-y-1 min-w-0">
-                  <p className="text-white text-base sm:text-lg font-semibold truncate">MLADOST (DL)</p>
+                  <p className="text-white text-base sm:text-lg font-semibold truncate">RADNIK ŠIŠINCE</p>
                   <p className="text-white text-base sm:text-lg font-semibold truncate">GORNJE SINKOVCE</p>
                 </div>
                 <div className="text-right text-lg sm:text-xl font-bold shrink-0">
-                  <p className="text-[#00A3FF]">6</p>
-                  <p className="text-[#00A3FF]">2</p>
+                  <p className="text-[#00A3FF]">7</p>
+                  <p className="text-[#00A3FF]">1</p>
                 </div>
               </div>
             </div>
@@ -633,8 +669,8 @@ const Home = () => {
           {/* Druga utakmica - 7. Jun */}
           <div className="flex items-start gap-4">
             <div className="w-14 sm:w-16 text-right border-r border-zinc-700 pr-3 sm:pr-4 shrink-0">
-              <div className="text-3xl sm:text-4xl font-bold text-white leading-none">7</div>
-              <div className="text-xs text-gray-400 uppercase mt-1">Jun</div>
+              <div className="text-3xl sm:text-4xl font-bold text-white leading-none">27</div>
+              <div className="text-xs text-gray-400 uppercase mt-1">Sep</div>
             </div>
 
             <div className="flex-1 min-w-0">
@@ -642,11 +678,11 @@ const Home = () => {
               <div className="flex justify-between items-center gap-4">
                 <div className="space-y-1 min-w-0">
                   <p className="text-white text-base sm:text-lg font-semibold truncate">GORNJE SINKOVCE</p>
-                  <p className="text-white text-base sm:text-lg font-semibold truncate">NAVALIN</p>
+                  <p className="text-white text-base sm:text-lg font-semibold truncate">DONJA LOMNICA</p>
                 </div>
                 <div className="text-right text-lg sm:text-xl font-bold shrink-0">
-                  <p className="text-[#00A3FF]">2</p>
-                  <p className="text-[#00A3FF]">7</p>
+                  <p className="text-[#00A3FF]">3</p>
+                  <p className="text-[#00A3FF]">0</p>
                 </div>
               </div>
             </div>
@@ -667,9 +703,9 @@ const Home = () => {
       <p className="text-xs sm:text-sm text-gray-400 mb-2 sm:mb-3">
         GRADSKA LIGA LESKOVAC
       </p>
-      <p className="text-2xl sm:text-3xl font-bold text-white">GORNJE SINKOVCE</p>
+      <p className="text-2xl sm:text-3xl font-bold text-white">MORAVAC MRŠTANE</p>
       <p className="text-[#00A3FF] text-sm my-2 font-medium">X</p>
-      <p className="text-2xl sm:text-3xl font-bold text-white"> NEPOZNATO</p>
+      <p className="text-2xl sm:text-3xl font-bold text-white">GORNJE SINKOVCE</p>
     </div>
 
     {/* Tajmer + datum */}
@@ -677,7 +713,7 @@ const Home = () => {
   <CountdownTimer targetDate={nextMatchDate} />
   
   <div className="mt-6 sm:mt-8">
-    <div className="text-4xl sm:text-5xl font-bold text-white leading-none">X. X. 2026.</div>
+    <div className="text-4xl sm:text-5xl font-bold text-white leading-none">03. 10. 2026.</div>
     {/* <div className="text-sm sm:text-base text-gray-400 mt-2">Nedelja • 11:00 • Gradska liga Leskovac</div> */}
   </div>
 </div>
