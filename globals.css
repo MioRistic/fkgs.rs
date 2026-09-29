@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  color-scheme: light; /* FORSIRA LIGHT MODE U BROWSERU */
+}
+
+/* Komentarisano da se ne menja boja u dark mode-u
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+*/
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  opacity: 0; /* početno stanje */
+}
+.heavy-title {
+  letter-spacing: -0.09em !important;
+  line-height: 0.72 !important;
+  font-weight: 900 !important;
+}
+@keyframes progressFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-progress {
+  width: 100%;
+  animation: progressFill 7s linear forwards;
+  box-shadow: 0 0 10px #00A3FF;
+}
