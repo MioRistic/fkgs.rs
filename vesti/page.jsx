@@ -9,6 +9,15 @@ import Link from 'next/link';
 const defaultBgImage = "https://i.ibb.co/5hY4jXzz/kir-ufod2u-Fjk-TI-unsplash.jpg";
 
 const allNews = [
+  {
+  "id": 12,
+  "title": "Informacije o utakmici Moravac Mrštane – Gornje Sinkovce",
+  "author": "FK Gornje Sinkovce",
+  "date": "2. oktobar 2026",
+  "excerpt": "Gostujemo u Mrštanima u subotu, 3. oktobra, u 15:00 na Sportskom centru Orion. Ulaz je slobodan, prenosa nema. Domaćin je ubedljivo prvi, mi smo treći.",
+  "imageUrl": "https://i.ibb.co/tMD8JGDY/14805.jpg",
+  "link": "/vesti/moravac-mrstane-gornje-sinkovce"
+},
 {
   "id": 11,
   "title": "Donja Lomnica nije došla u Sinkovce. Mi pišemo 3:0, savez još uvek ne.",

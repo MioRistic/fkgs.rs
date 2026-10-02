@@ -397,6 +397,14 @@ const Home = () => {
   const AUTOPLAY_MS = 6000;
 
   const heroItems = [
+    {
+  id: 12,
+  title: "Informacije o utakmici Moravac Mrštane – Gornje Sinkovce",
+  date: "2. oktobar 2026",
+  excerpt: "Gostujemo u Mrštanima u subotu, 3. oktobra, u 15:00 na Sportskom centru Orion. Ulaz je slobodan, prenosa nema. Domaćin je prvi, mi smo treći.",
+  image: "https://i.ibb.co/tMD8JGDY/14805.jpg",
+  link: "/vesti/moravac-mrstane-gornje-sinkovce",
+},
    {
   id: 11,
   title: "Donja Lomnica nije došla u Sinkovce. Mi pišemo 3:0, savez još uvek ne.",
@@ -413,20 +421,21 @@ const Home = () => {
       image: "https://i.ibb.co/1BHF1Vm/702494770-1577170647747249-6276155135646095994-n-1.jpg",
       link: "/vesti/fkgs-vizija",
     },
-    {
-      id: 9,
-      title: "SEZONA ZAVRŠENA NA 6. MESTU",
-      date: "07. jun 2026",
-      excerpt: "Porazom od Navalina 2:7 završena je sezona 2025/26.",
-      image: "https://i.ibb.co/6cbLY4X4/668235405-26672293589033583-6079540597957973203-n.jpg",
-      link: "/vesti/fkgs-kraj-sezone-2026",
-    },
+  
  
   ];
 
 
   const blogPosts: Post[] = [
-    
+    {
+  "id": 12,
+  "title": "Informacije o utakmici Moravac Mrštane – Gornje Sinkovce",
+  "author": "FK Gornje Sinkovce",
+  "date": "2. oktobar 2026",
+  "excerpt": "Gostujemo u Mrštanima u subotu, 3. oktobra, u 15:00 na Sportskom centru Orion. Ulaz je slobodan, prenosa nema. Domaćin je ubedljivo prvi, mi smo treći.",
+  "imageUrl": "https://i.ibb.co/tMD8JGDY/14805.jpg",
+  "link": "/vesti/moravac-mrstane-gornje-sinkovce"
+},
 {
   "id": 11,
   "title": "Donja Lomnica nije došla u Sinkovce. Mi pišemo 3:0, savez još uvek ne.",
